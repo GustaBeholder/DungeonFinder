@@ -33,14 +33,14 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         
         initComponents();
-        teste();
+        carregaInicio();
         atualizaTabela();
         listaM.setSelectedIndex(0);
         atualizaInfos();
         setLocationRelativeTo(this);
     }
     
-    private void teste() {
+    private void carregaInicio() {
         JogadorDAO jogadorDAO = new JogadorDAO();
         MesaDAO mesaDAO = new MesaDAO();
         listaMesas = mesaDAO.retornaMesas("");
@@ -110,6 +110,7 @@ public class Main extends javax.swing.JFrame {
         listaM = new javax.swing.JList<>();
         criaMesabtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnVerMesas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -170,6 +171,13 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Mesas");
 
+        btnVerMesas.setText("Minhas mesas");
+        btnVerMesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerMesasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -186,7 +194,10 @@ public class Main extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(criaMesabtn)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnVerMesas)
+                                .addGap(173, 173, 173)
+                                .addComponent(criaMesabtn))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,7 +228,9 @@ public class Main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(participar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                        .addComponent(criaMesabtn))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(criaMesabtn)
+                            .addComponent(btnVerMesas)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -229,7 +242,7 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,6 +272,13 @@ public class Main extends javax.swing.JFrame {
         adcionaDAO.adicionaJogadorMesa(jogadorAtual, mesaAtual);
         JOptionPane.showMessageDialog(this, "Você entrou na mesa!", "Mesa", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_participarMouseClicked
+
+    private void btnVerMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMesasActionPerformed
+        InfoMesas next = new InfoMesas();
+        this.setVisible(false);
+        next.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVerMesasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,6 +317,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVerMesas;
     private javax.swing.JButton criaMesabtn;
     private javax.swing.JLabel descricaoMesa;
     private javax.swing.JLabel jLabel1;

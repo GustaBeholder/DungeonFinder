@@ -78,6 +78,35 @@ public class MesaDAO {
         }
         return jogador;
     }
+    
+    public List<Mesa> retornaMesasMestre(Integer idMestre) throws RuntimeException {
+        List<Mesa> mesas = new ArrayList<Mesa>();
+        Mesa mesa;
+
+        String sql = "SELECT * FROM mesa where idMestre = "+ idMestre;
+        try {
+            PreparedStatement stmt = getConnection().prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+
+                mesa = new Mesa();
+                mesa.setIdMesa(rs.getInt("idMesa"));
+                mesa.setDescricao(rs.getString("descricao"));
+                mesa.setSistema(rs.getString("sistema"));
+                mesa.setIdMestre(rs.getInt("idMestre"));
+                mesa.setTitulo(rs.getString("titulo"));
+
+                mesas.add(mesa);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        
+        
+        
+        
+        return mesas;
+    }
 
 
 
